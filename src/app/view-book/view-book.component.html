@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="book">
+    <div class="book__header">
+      Details
+      <a (click)="back()"><i class="bi bi-x-circle"></i></a>
+    </div>
+    <div class="book__body">
+      <div class="book__left">
+        <div class="book__img">
+          <img src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="">
+        </div>
+        <div class="book__rates">
+          <span>Rating: {{book.rating !== null ? book.rating : "missing"}}</span>
+          <span>Reviews: {{book.reviews === null ? 0 : book.reviews.length}}</span>
+        </div>
+      </div>
+      <div class="book__right">
+        <div class="book__title">{{book.title}}</div>
+        <div class="book__subtitle">{{book.author}}, Genre</div>
+        <div class="book__content">{{book.content}}</div>
+      </div>
+    </div>
+
+    <div *ngIf="book.reviews.length; else elseBlock">
+      <div class="book__reviews">
+        <div *ngFor="let review of book.reviews">
+          <div>
+            <div class="book__reviewer">{{review.reviewer}}</div>
+            <div class="book__review">{{review.message}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ng-template #elseBlock>
+      <div class="book__header">Reviews are missing</div>
+    </ng-template>
+
+  </div>
+</div>

@@ -1,0 +1,7 @@
+<div *ngIf="books">
+  <div class="row">
+    <div *ngFor="let book of books">
+      <book-list-item [book]="book"></book-list-item>
+    </div>
+  </div>
+</div>
