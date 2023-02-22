@@ -12,6 +12,7 @@ import { BooksPageComponent } from './books-page/books-page.component';
 import { BookListComponent } from './book-list/book-list.component';
 import { BookListItemComponent } from './book-list-item/book-list-item.component';
 import { ViewBookComponent } from './view-book/view-book.component';
+import { EditBookComponent } from './edit-book/edit-book.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { ViewBookComponent } from './view-book/view-book.component';
     BookListComponent,
     BookListItemComponent,
     ViewBookComponent,
+    EditBookComponent,
   ],
   imports: [
     MatTabsModule,

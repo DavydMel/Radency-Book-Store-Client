@@ -1,0 +1,50 @@
+<div class="container">
+  <form class="form">
+    <div *ngIf="!isEditMode; else elseBlock"
+         class="form__header">
+      Add Book
+    </div>
+    <ng-template #elseBlock>
+      <div class="form__header">
+        Edit Book
+      </div>
+    </ng-template>
+
+    <div class="form__body">
+      <div class="form__left">
+        <div class="form__inputs">
+          <input name="id" id="id" type="hidden" [(ngModel)]="book.id">
+          <div class="form__group">
+            <label for="title">Title</label>
+            <input name="title" id="title" type="text" [(ngModel)]="book.title" />
+          </div>
+          <div class="form__group">
+            <label for="cover">Cover</label>
+            <input name="cover" id="cover" type="text" [(ngModel)]="book.cover" />
+          </div>
+          <div class="form__group">
+            <label for="genre">Genre</label>
+            <input name="genre" id="genre" type="text" [(ngModel)]="book.genre" />
+          </div>
+          <div class="form__group">
+            <label for="author">Author</label>
+            <input name="author" id="author" type="text" [(ngModel)]="book.author" />
+          </div>
+        </div>
+      </div>
+
+      <div class="form__right">
+        <div class="form__content">
+          <label for="content">Content</label>
+          <textarea name="content" id="content" [(ngModel)]="book.content"></textarea>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="form__actions">
+      <button class="form__btn form__btn_add" (click)="addBook()">Add</button>
+      <button class="form__btn form__btn_clear" (click)="clear()">Clear</button>
+    </div>
+  </form>
+</div>
