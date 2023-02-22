@@ -20,7 +20,7 @@
           </div>
           <div class="form__group">
             <label for="cover">Cover</label>
-            <input name="cover" id="cover" type="text" [(ngModel)]="book.cover" />
+            <input #imgInput  name="cover" id="cover" accept="image/*" type="file" (change)="imgChange($event)" />
           </div>
           <div class="form__group">
             <label for="genre">Genre</label>
@@ -47,4 +47,5 @@
       <button class="form__btn form__btn_clear" (click)="clear()">Clear</button>
     </div>
   </form>
+  {{errors}}
 </div>

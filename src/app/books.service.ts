@@ -19,7 +19,6 @@ export class BooksService {
     return this.editId;
   }
 
-
   constructor(
     private http: HttpClient,
   ) { }
