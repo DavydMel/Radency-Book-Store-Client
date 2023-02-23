@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {Location} from "@angular/common";
-import { ActivatedRoute } from '@angular/router';
-import {BookDetail} from "../models/bookDetail";
+import {ActivatedRoute} from '@angular/router';
+import {BookDetail} from "../../models/bookDetail";
 import {BooksService} from "../books.service";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'view-book',
@@ -10,7 +11,7 @@ import {BooksService} from "../books.service";
   styleUrls: ['./view-book.component.css']
 })
 export class ViewBookComponent implements OnInit {
-  public book: BookDetail = <BookDetail>{};
+  public book: Observable<BookDetail> = new Observable<BookDetail>();
 
   constructor(
     private location: Location,
@@ -27,9 +28,6 @@ export class ViewBookComponent implements OnInit {
   }
 
   getBook(id: number) {
-    this.bookService.getBook(id)
-      .subscribe(book => {
-        this.book = book;
-      });
+    this.book = this.bookService.getBook(id);
   }
 }

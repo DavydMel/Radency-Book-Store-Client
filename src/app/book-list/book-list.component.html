@@ -1,7 +1,11 @@
-<div *ngIf="books">
+<div *ngIf="(books | async) as books; else loading">
   <div class="row">
     <div *ngFor="let book of books">
       <book-list-item [book]="book"></book-list-item>
     </div>
   </div>
 </div>
+
+<ng-template #loading>
+  Loading stuff...
+</ng-template>

@@ -6,6 +6,7 @@ export interface BookDetail {
   author: string;
   cover: string;
   content: string;
+  genre: string;
   rating: number;
   reviews: Review[];
 }

@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {BookShort} from "../models/bookShort";
+import {BookShort} from "../../models/bookShort";
 import {BooksService} from "../books.service";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'book-list',
@@ -8,23 +9,24 @@ import {BooksService} from "../books.service";
   styleUrls: ['./book-list.component.css']
 })
 export class BookListComponent implements OnInit {
-  public books: BookShort[] = [];
+  public books: Observable<BookShort[]> = new Observable<BookShort[]>();
   @Input() recommended: boolean = false;
 
-  constructor(private booksPageService: BooksService) { }
+  constructor(private booksService: BooksService) { }
 
   getBooks(): void {
     if (this.recommended) {
-      this.booksPageService.getRecommendedBooks()
-        .subscribe(books => this.books = books);
+      this.books = this.booksService.getRecommendedBooks();
     }
     else  {
-      this.booksPageService.getBooks()
-        .subscribe(books => this.books = books);
+      this.books = this.booksService.getBooks();
     }
   }
 
   ngOnInit(): void {
     this.getBooks();
+    this.booksService.RefreshRequired.subscribe(() => {
+      this.getBooks();
+    });
   }
 }

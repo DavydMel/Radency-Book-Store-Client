@@ -36,10 +36,14 @@ a {
   text-decoration: none;
   color: black;
 }
+.card__actions {
+  margin-top: 2px;
+}
 .card__action {
   padding: 6px;
   margin: 5px;
   background-color: #88b5f2;
   border-radius: 5px;
   font-size: 20px;
+  cursor: pointer;
 }
