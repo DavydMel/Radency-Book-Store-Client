@@ -13,22 +13,26 @@
     <div class="form__body">
       <div class="form__left">
         <div class="form__inputs">
-          <input name="id" id="id" type="hidden" [(ngModel)]="book.id">
+          <input name="id" id="id" type="hidden" required [(ngModel)]="book.id">
           <div class="form__group">
             <label for="title">Title</label>
-            <input name="title" id="title" type="text" [(ngModel)]="book.title" />
+            <input name="title" id="title" type="text"
+                   required [(ngModel)]="book.title"/>
           </div>
           <div class="form__group">
             <label for="cover">Cover</label>
-            <input #imgInput  name="cover" id="cover" accept="image/*" type="file" (change)="imgChange($event)" />
+            <input #imgInput  name="cover" id="cover" required
+                   accept="image/*" type="file" (change)="imgChange($event)" />
           </div>
           <div class="form__group">
             <label for="genre">Genre</label>
-            <input name="genre" id="genre" type="text" [(ngModel)]="book.genre" />
+            <input name="genre" id="genre" type="text"
+                   required [(ngModel)]="book.genre" />
           </div>
           <div class="form__group">
             <label for="author">Author</label>
-            <input name="author" id="author" type="text" [(ngModel)]="book.author" />
+            <input name="author" id="author" type="text"
+                   required [(ngModel)]="book.author" />
           </div>
         </div>
       </div>
@@ -36,16 +40,23 @@
       <div class="form__right">
         <div class="form__content">
           <label for="content">Content</label>
-          <textarea name="content" id="content" [(ngModel)]="book.content"></textarea>
+          <textarea name="content" id="content" required
+                    [(ngModel)]="book.content"></textarea>
         </div>
       </div>
 
     </div>
 
     <div class="form__actions">
-      <button class="form__btn form__btn_add" (click)="addBook()">Add</button>
+      <button class="form__btn form__btn_add" (click)="addBook()">
+        <div *ngIf="!isEditMode; else editBtn">
+          Add
+        </div>
+        <ng-template #editBtn>
+          Edit
+        </ng-template>
+      </button>
       <button class="form__btn form__btn_clear" (click)="clear()">Clear</button>
     </div>
   </form>
-  {{errors}}
 </div>

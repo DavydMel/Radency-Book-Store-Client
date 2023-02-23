@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {catchError, Observable, retry, Subject, tap, throwError} from "rxjs";
-import {Book} from "./models/book";
-import {BookShort} from "./models/bookShort";
-import {BookDetail} from "./models/bookDetail";
+import {Book} from "../models/book";
+import {BookShort} from "../models/bookShort";
+import {BookDetail} from "../models/bookDetail";
 
 @Injectable({
   providedIn: 'root'
@@ -14,9 +14,9 @@ export class BooksService {
   get RefreshRequired() {
     return this.refreshRequired;
   }
-  private editId =  new Subject<Book>();
-  get EditId() {
-    return this.editId;
+  private bookToEdit =  new Subject<Book>();
+  get BookToEdit() {
+    return this.bookToEdit;
   }
 
   constructor(
@@ -59,7 +59,7 @@ export class BooksService {
 
   editBook(id: number): void {
     this.getBook(id).subscribe(bookDetail => {
-      this.editId.next(bookDetail as Book);
+      this.bookToEdit.next(bookDetail as Book);
     });
   }
 

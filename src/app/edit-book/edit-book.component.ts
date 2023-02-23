@@ -1,5 +1,5 @@
 import {Component, ElementRef, OnInit} from '@angular/core';
-import {Book} from "../models/book";
+import {Book} from "../../models/book";
 import {BooksService} from "../books.service";
 import { ViewChild } from '@angular/core';
 
@@ -11,7 +11,6 @@ import { ViewChild } from '@angular/core';
 export class EditBookComponent implements OnInit {
   public book: Book = <Book>{};
   public isEditMode = false;
-  public errors: string = "";
 
   @ViewChild('imgInput')
   public imgInput: ElementRef | undefined;
@@ -19,7 +18,7 @@ export class EditBookComponent implements OnInit {
   constructor(private bookService: BooksService) { }
 
   ngOnInit(): void {
-    this.bookService.EditId.subscribe(val => {
+    this.bookService.BookToEdit.subscribe(val => {
       this.book = val;
       this.isEditMode = true;
     });
